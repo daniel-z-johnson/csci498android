@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 
 public class LuchListActivity extends Activity {
 	List<Restaurant> model = new ArrayList<Restaurant>();
@@ -27,10 +28,10 @@ public class LuchListActivity extends Activity {
         
         save.setOnClickListener(onSave);
         
-        ListView list = (ListView)findViewById(R.id.restraurants);
+        Spinner list = (Spinner)findViewById(R.id.restraurants);
         
         adapter = new ArrayAdapter<Restaurant>(this,
-        					android.R.layout.simple_expandable_list_item_1,
+        					android.R.layout.simple_spinner_dropdown_item,
         					model);
         list.setAdapter(adapter);
     }
