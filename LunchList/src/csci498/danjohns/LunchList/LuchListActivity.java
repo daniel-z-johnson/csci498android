@@ -7,13 +7,16 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 public class LuchListActivity extends Activity {
 	List<Restaurant> model = new ArrayList<Restaurant>();
+	ArrayAdapter<Restaurant> adapter=null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -23,6 +26,13 @@ public class LuchListActivity extends Activity {
         Button save = (Button)findViewById(R.id.save);
         
         save.setOnClickListener(onSave);
+        
+        ListView list = (ListView)findViewById(R.id.restraurants);
+        
+        adapter = new ArrayAdapter<Restaurant>(this,
+        					android.R.layout.simple_expandable_list_item_1,
+        					model);
+        list.setAdapter(adapter);
     }
 
     @Override
@@ -57,6 +67,8 @@ public class LuchListActivity extends Activity {
 					r.setType("delivery");
 					break;
 			}
+			
+			adapter.add(r);
 		}
     };
 }
