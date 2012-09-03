@@ -19,47 +19,6 @@ public class LuchListActivity extends Activity {
         
         Button save = (Button)findViewById(R.id.save);
         
-        RadioGroup types = (RadioGroup)findViewById(R.id.types);
-        RadioButton a = new RadioButton(this);
-        a.setText("a");
-        types.addView(a);
-        
-        RadioButton b = new RadioButton(this);
-        b.setText("b");
-        types.addView(b);
-        
-        RadioButton c = new RadioButton(this);
-        c.setText("c");
-        types.addView(c);
-        
-        RadioButton d = new RadioButton(this);
-        d.setText("d");
-        types.addView(d);
-        
-        RadioButton e = new RadioButton(this);
-        e.setText("e");
-        types.addView(e);
-        
-        RadioButton f = new RadioButton(this);
-        f.setText("f");
-        types.addView(f);
-        
-        RadioButton g = new RadioButton(this);
-        g.setText("g");
-        types.addView(g);
-        
-        RadioButton h = new RadioButton(this);
-        h.setText("h");
-        types.addView(h);
-        
-        RadioButton i = new RadioButton(this);
-        i.setText("i");
-        types.addView(i);
-        
-        RadioButton j = new RadioButton(this);
-        j.setText("j");
-        types.addView(j);
-        
         save.setOnClickListener(onSave);
     }
 
