@@ -33,7 +33,7 @@ public class LuchListActivity extends Activity {
 			EditText name = (EditText)findViewById(R.id.name);
 			EditText address = (EditText)findViewById(R.id.addr);
 			
-			r.setName(address.getText().toString());
+			r.setName(name.getText().toString());
 			r.setAddress(address.getText().toString());
 		}
     };
