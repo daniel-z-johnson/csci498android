@@ -1,5 +1,8 @@
 package csci498.danjohns.LunchList;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -10,7 +13,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 public class LuchListActivity extends Activity {
-	Restaurant r = new Restaurant();
+	List<Restaurant> model = new ArrayList<Restaurant>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,7 @@ public class LuchListActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
+			Restaurant r = new Restaurant();
 			EditText name = (EditText)findViewById(R.id.name);
 			EditText address = (EditText)findViewById(R.id.addr);
 			
