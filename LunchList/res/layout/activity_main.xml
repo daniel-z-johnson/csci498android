@@ -15,6 +15,7 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:typeface="serif"
             android:text="@string/name_string" />
 
         <EditText
@@ -41,6 +42,7 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:typeface="serif"
             android:text="@string/address_string" />
 
         <EditText
