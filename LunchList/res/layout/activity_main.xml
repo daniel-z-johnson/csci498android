@@ -30,31 +30,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Type:" />
-
-        <RadioGroup
-            android:id="@+id/types"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <RadioButton
-                android:id="@+id/take_out"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="Take-Out" />
-
-            <RadioButton
-                android:id="@+id/sit_down"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sit Down" />
-
-            <RadioButton
-                android:id="@+id/delivery"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Delivery" />
-        </RadioGroup>
+        
+        <ScrollView>
+		        <RadioGroup
+		            android:id="@+id/types"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content" >
+		
+		            <RadioButton
+		                android:id="@+id/take_out"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:checked="true"
+		                android:text="Take-Out" />
+		
+		            <RadioButton
+		                android:id="@+id/sit_down"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:text="Sit Down" />
+		
+		            <RadioButton
+		                android:id="@+id/delivery"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:text="Delivery" />
+		        </RadioGroup>
+        </ScrollView>
 
     </TableRow>
 
