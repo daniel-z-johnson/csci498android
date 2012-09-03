@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 public class LuchListActivity extends Activity {
@@ -17,6 +18,11 @@ public class LuchListActivity extends Activity {
         setContentView(R.layout.activity_main);
         
         Button save = (Button)findViewById(R.id.save);
+        
+        RadioGroup types = (RadioGroup)findViewById(R.id.types);
+        RadioButton a = new RadioButton(this);
+        a.setText("a");
+        types.addView(a);
         
         save.setOnClickListener(onSave);
     }
