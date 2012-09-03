@@ -22,7 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10" >
+            android:ems="10"
+            tools:ignore="InefficientWeight" >
 
             <requestFocus />
         </EditText>
@@ -47,7 +48,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10" />
+            android:ems="10"
+            tools:ignore="InefficientWeight" />
+
     </LinearLayout>
 
     <Button
