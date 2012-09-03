@@ -6,5 +6,6 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="name_string">name:</string>
     <string name="address_string">Address:</string>
+    <string name="save_string">save</string>
 
 </resources>
