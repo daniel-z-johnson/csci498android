@@ -18,7 +18,7 @@ import android.widget.Spinner;
 
 public class LuchListActivity extends Activity {
 	List<Restaurant> model = new ArrayList<Restaurant>();
-	ArrayAdapter<Restaurant> adapter=null;
+	RestaurantAdapter adapter=null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,9 +31,7 @@ public class LuchListActivity extends Activity {
         
         ListView list = (ListView)findViewById(R.id.restraurants);
         
-        adapter = new ArrayAdapter<Restaurant>(this,
-        					android.R.layout.simple_list_item_1,
-        					model);
+        adapter = new RestaurantAdapter();
         list.setAdapter(adapter);
     }
 
