@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.ListActivity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -72,4 +73,12 @@ public class LuchListActivity extends Activity {
 			adapter.add(r);
 		}
     };
+    
+    class RestaurantAdapter extends ArrayAdapter<Restaurant> {
+    	public RestaurantAdapter() {
+			super(LuchListActivity.this,
+					android.R.layout.simple_list_item_1,
+					model);
+		}
+    }
 }
