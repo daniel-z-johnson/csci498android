@@ -69,7 +69,7 @@
             android:layout_height="wrap_content"
             android:text="@string/save_string" />
     </TableLayout>
-    <Spinner android:id="@+id/restraurants"
+    <ListView android:id="@+id/restraurants"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"

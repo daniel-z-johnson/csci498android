@@ -28,10 +28,10 @@ public class LuchListActivity extends Activity {
         
         save.setOnClickListener(onSave);
         
-        Spinner list = (Spinner)findViewById(R.id.restraurants);
+        ListView list = (ListView)findViewById(R.id.restraurants);
         
         adapter = new ArrayAdapter<Restaurant>(this,
-        					android.R.layout.simple_spinner_dropdown_item,
+        					android.R.layout.simple_list_item_1,
         					model);
         list.setAdapter(adapter);
     }
