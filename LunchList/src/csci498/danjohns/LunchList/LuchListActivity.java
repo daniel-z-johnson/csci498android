@@ -6,6 +6,9 @@ import java.util.List;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.ListActivity;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -116,12 +119,18 @@ public class LuchListActivity extends Activity {
 			name.setText(r.getName());
 			address.setText(r.getAddress());
 
-			if (r.getType().equals("sit_down"))
+			if (r.getType().equals("sit_down")){
 				icon.setImageResource(R.drawable.ball_red);
-			else if (r.getType().equals("take_out"))
+				name.setTextColor(Color.RED);
+			}
+			else if (r.getType().equals("take_out")){
 				icon.setImageResource(R.drawable.ball_yellow);
-			else
+				name.setTextColor(Color.YELLOW);
+			}
+			else{
 				icon.setImageResource(R.drawable.ball_green);
+				name.setTextColor(Color.GREEN);
+			}
 		}
 	}
 }
