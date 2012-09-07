@@ -7,5 +7,9 @@
     <string name="name_string">Name:</string>
     <string name="address_string">Address:</string>
     <string name="save_string">save</string>
+    <string name="type_string">Type:</string>
+    <string name="take_out_string">Take-Out</string>
+    <string name="sit_down_string">Sit-Down</string>
+    <string name="delivery_string">Delivery</string>
 
 </resources>
