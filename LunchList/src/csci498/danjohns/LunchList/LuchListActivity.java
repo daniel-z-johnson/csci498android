@@ -179,6 +179,7 @@ public class LuchListActivity extends TabActivity {
 				types.check(R.id.take_out);
 			else
 				types.check(R.id.delivery);
+			getTabHost().setCurrentTab(1);
 		}
 		
 	};
