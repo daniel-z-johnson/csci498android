@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +27,8 @@ import android.widget.TextView;
 
 import android.app.TabActivity;
 import android.widget.TabHost;
+
+import android.widget.AdapterView;
 
 @SuppressWarnings("deprecation")
 public class LuchListActivity extends TabActivity {
@@ -59,7 +62,7 @@ public class LuchListActivity extends TabActivity {
 		
 		getTabHost().setCurrentTab(0);
 		
-		
+		list.setOnItemClickListener(onListClick);
 	}
 
 	@Override
@@ -153,4 +156,13 @@ public class LuchListActivity extends TabActivity {
 			}
 		}
 	}
+	
+	private AdapterView.OnItemClickListener onListClick= new AdapterView.OnItemClickListener(){
+
+		@Override
+		public void onItemClick(AdapterView<?> parant, View view, int position, long id) {
+			
+		}
+		
+	};
 }
