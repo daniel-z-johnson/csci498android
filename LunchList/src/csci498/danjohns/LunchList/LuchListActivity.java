@@ -21,9 +21,14 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TabHost;
 import android.widget.TextView;
 
-public class LuchListActivity extends Activity {
+import android.app.TabActivity;
+import android.widget.TabHost;
+
+@SuppressWarnings("deprecation")
+public class LuchListActivity extends TabActivity {
 	List<Restaurant> model = new ArrayList<Restaurant>();
 	RestaurantAdapter adapter = null;
 
@@ -36,10 +41,25 @@ public class LuchListActivity extends Activity {
 
 		save.setOnClickListener(onSave);
 
-		ListView list = (ListView) findViewById(R.id.restraurants);
+		ListView list = (ListView) findViewById(R.id.restaurants);
 
 		adapter = new RestaurantAdapter();
 		list.setAdapter(adapter);
+		
+		TabHost.TabSpec spec = getTabHost().newTabSpec("tag1");
+		
+		spec.setContent(R.id.restaurants);
+		spec.setIndicator("List", getResources().getDrawable(R.drawable.list));
+		getTabHost().addTab(spec);
+		
+		spec = getTabHost().newTabSpec("tag2");
+		spec.setContent(R.id.details);
+		spec.setIndicator("Details", getResources().getDrawable(R.drawable.restaurant_icon));
+		getTabHost().addTab(spec);
+		
+		getTabHost().setCurrentTab(0);
+		
+		
 	}
 
 	@Override
