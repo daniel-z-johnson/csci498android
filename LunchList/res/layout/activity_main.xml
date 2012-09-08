@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@android:id/tabhost"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-
+    
+    <Button android:id="@+id/switcher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Flip" />
+	<ViewFlipper 
+	    android:id="@+id/flip"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
-        <TabWidget
-            android:id="@android:id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
-			
+
             <ListView
                 android:id="@+id/restaurants"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-			<ScrollView 
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content">
+
             <TableLayout
                 android:id="@+id/details"
                 android:layout_width="match_parent"
@@ -67,11 +69,11 @@
                             android:text="@string/delivery_string" />
                     </RadioGroup>
                 </TableRow>
-                
-                <DatePicker 
+                <DatePicker
                     android:id="@+id/date"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    />
 
                 <Button
                     android:id="@+id/save"
@@ -79,8 +81,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/save_string" />
             </TableLayout>
-            </ScrollView>
         </FrameLayout>
     </LinearLayout>
+    </ViewFlipper>
 
-</TabHost>
+</LinearLayout>

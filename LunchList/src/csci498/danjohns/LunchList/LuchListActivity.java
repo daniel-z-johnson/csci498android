@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 
 import android.app.TabActivity;
 import android.widget.TabHost;
@@ -44,6 +45,7 @@ public class LuchListActivity extends TabActivity {
 		date = (DatePicker)findViewById(R.id.date);
 
 		Button save = (Button) findViewById(R.id.save);
+		Button switcher = (Button)findViewById(R.id.switcher);
 
 		save.setOnClickListener(onSave);
 
@@ -52,18 +54,7 @@ public class LuchListActivity extends TabActivity {
 		adapter = new RestaurantAdapter();
 		list.setAdapter(adapter);
 		
-		TabHost.TabSpec spec = getTabHost().newTabSpec("tag1");
-		
-		spec.setContent(R.id.restaurants);
-		spec.setIndicator("List", getResources().getDrawable(R.drawable.list));
-		getTabHost().addTab(spec);
-		
-		spec = getTabHost().newTabSpec("tag2");
-		spec.setContent(R.id.details);
-		spec.setIndicator("Details", getResources().getDrawable(R.drawable.restaurant_icon));
-		getTabHost().addTab(spec);
-		
-		getTabHost().setCurrentTab(0);
+		ViewFlipper spec;
 		
 		list.setOnItemClickListener(onListClick);
 	}
