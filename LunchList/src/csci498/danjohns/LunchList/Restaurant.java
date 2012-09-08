@@ -1,10 +1,13 @@
 package csci498.danjohns.LunchList;
 
+import java.sql.Date;
+
 public class Restaurant {
 	
 	private String name="";
 	private String address="";
 	private String type="";
+	private Date date = null;
 	
 	public String getType() {
 		return type;
@@ -27,5 +30,11 @@ public class Restaurant {
 	
 	public String toString(){
 		return(getName());
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
 	}
 }

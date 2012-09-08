@@ -13,17 +13,18 @@
             android:id="@android:id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
-
+			
             <ListView
                 android:id="@+id/restaurants"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-
+			<ScrollView 
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content">
             <TableLayout
                 android:id="@+id/details"
                 android:layout_width="match_parent"
@@ -66,6 +67,11 @@
                             android:text="@string/delivery_string" />
                     </RadioGroup>
                 </TableRow>
+                
+                <DatePicker 
+                    android:id="@+id/date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
                 <Button
                     android:id="@+id/save"
@@ -73,6 +79,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/save_string" />
             </TableLayout>
+            </ScrollView>
         </FrameLayout>
     </LinearLayout>
 
