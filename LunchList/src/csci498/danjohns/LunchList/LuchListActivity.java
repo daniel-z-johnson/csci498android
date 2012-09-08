@@ -29,6 +29,7 @@ public class LuchListActivity extends TabActivity {
 	RestaurantAdapter adapter = null;
 	EditText name = null;
 	EditText address = null;
+	EditText notes = null;
 	RadioGroup types = null;
 
 	@Override
@@ -38,6 +39,7 @@ public class LuchListActivity extends TabActivity {
 		
 		name = (EditText)findViewById(R.id.name);
 		address = (EditText)findViewById(R.id.addr);
+		notes = (EditText)findViewById(R.id.notes);
 		types = (RadioGroup)findViewById(R.id.types);
 
 		Button save = (Button) findViewById(R.id.save);
@@ -78,6 +80,7 @@ public class LuchListActivity extends TabActivity {
 			Restaurant r = new Restaurant();
 			r.setName(name.getText().toString());
 			r.setAddress(address.getText().toString());
+			r.setNotes(notes.getText().toString());
 
 			switch (types.getCheckedRadioButtonId()) {
 			case R.id.sit_down:
@@ -105,6 +108,7 @@ public class LuchListActivity extends TabActivity {
 			
 			name.setText(r.getName());
 			address.setText(r.getAddress());
+			notes.setText(r.getNotes());
 			
 			if(r.getType().equals("sit_down"))
 				types.check(R.id.sit_down);

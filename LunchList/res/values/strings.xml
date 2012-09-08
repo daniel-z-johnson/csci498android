@@ -11,5 +11,6 @@
     <string name="take_out_string">Take-Out</string>
     <string name="sit_down_string">Sit-Down</string>
     <string name="delivery_string">Delivery</string>
+    <string name="string_notes">Notes: </string>
 
 </resources>
