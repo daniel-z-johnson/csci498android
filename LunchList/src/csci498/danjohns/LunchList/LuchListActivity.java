@@ -4,24 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
-import android.app.Activity;
-import android.app.ListActivity;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.TextView;
 
@@ -51,7 +44,7 @@ public class LuchListActivity extends TabActivity {
 
 		save.setOnClickListener(onSave);
 
-		ListView list = (ListView) findViewById(R.id.restaurants);
+		ListView list = (ListView)findViewById(R.id.restaurants);
 
 		adapter = new RestaurantAdapter();
 		list.setAdapter(adapter);
@@ -83,13 +76,8 @@ public class LuchListActivity extends TabActivity {
 		@Override
 		public void onClick(View v) {
 			Restaurant r = new Restaurant();
-			name = (EditText) findViewById(R.id.name);
-			address = (EditText) findViewById(R.id.addr);
-
 			r.setName(name.getText().toString());
 			r.setAddress(address.getText().toString());
-
-			types = (RadioGroup) findViewById(R.id.types);
 
 			switch (types.getCheckedRadioButtonId()) {
 			case R.id.sit_down:
@@ -106,6 +94,26 @@ public class LuchListActivity extends TabActivity {
 			}
 
 			adapter.add(r);
+		}
+	};
+	
+	private AdapterView.OnItemClickListener onListClick= new AdapterView.OnItemClickListener(){
+
+		@Override
+		public void onItemClick(AdapterView<?> parant, View view, int position, long id) {
+			Restaurant r = model.get(position);
+			
+			name.setText(r.getName());
+			address.setText(r.getAddress());
+			
+			if(r.getType().equals("sit_down"))
+				types.check(R.id.sit_down);
+			else if (r.getType().equals("take_out"))
+				types.check(R.id.take_out);
+			else
+				types.check(R.id.delivery);
+			
+			getTabHost().setCurrentTab(1);
 		}
 	};
 
@@ -126,7 +134,7 @@ public class LuchListActivity extends TabActivity {
 				holder = new RestaurantHolder(row);
 				row.setTag(holder);
 			} else
-				holder = (RestaurantHolder) row.getTag();
+				holder = (RestaurantHolder)row.getTag();
 
 			holder.populateFrom(model.get(position));
 
@@ -163,24 +171,4 @@ public class LuchListActivity extends TabActivity {
 			}
 		}
 	}
-	
-	private AdapterView.OnItemClickListener onListClick= new AdapterView.OnItemClickListener(){
-
-		@Override
-		public void onItemClick(AdapterView<?> parant, View view, int position, long id) {
-			Restaurant r = model.get(position);
-			
-			name.setText(r.getName());
-			address.setText(r.getAddress());
-			
-			if(r.getType().equals("sit_down"))
-				types.check(R.id.sit_down);
-			else if (r.getType().equals("take_out"))
-				types.check(R.id.take_out);
-			else
-				types.check(R.id.delivery);
-			getTabHost().setCurrentTab(1);
-		}
-		
-	};
 }
