@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -29,6 +30,7 @@ public class LuchListActivity extends TabActivity {
 	RestaurantAdapter adapter = null;
 	EditText name = null;
 	EditText address = null;
+	DatePicker date = null;
 	RadioGroup types = null;
 
 	@Override
@@ -39,6 +41,7 @@ public class LuchListActivity extends TabActivity {
 		name = (EditText)findViewById(R.id.name);
 		address = (EditText)findViewById(R.id.addr);
 		types = (RadioGroup)findViewById(R.id.types);
+		date = (DatePicker)findViewById(R.id.date);
 
 		Button save = (Button) findViewById(R.id.save);
 
@@ -78,6 +81,9 @@ public class LuchListActivity extends TabActivity {
 			Restaurant r = new Restaurant();
 			r.setName(name.getText().toString());
 			r.setAddress(address.getText().toString());
+			r.setYear(date.getYear());
+			r.setDay(date.getDayOfMonth());
+			r.setMonth(date.getMonth() + 1);
 
 			switch (types.getCheckedRadioButtonId()) {
 			case R.id.sit_down:
@@ -155,7 +161,7 @@ public class LuchListActivity extends TabActivity {
 
 		void populateFrom(Restaurant r) {
 			name.setText(r.getName());
-			address.setText(r.getAddress());
+			address.setText(r.getAddress() + " " + r.getDateFormate());
 
 			if (r.getType().equals("sit_down")){
 				icon.setImageResource(R.drawable.ball_red);

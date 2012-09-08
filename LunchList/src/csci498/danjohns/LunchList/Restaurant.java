@@ -1,13 +1,13 @@
 package csci498.danjohns.LunchList;
 
-import java.sql.Date;
-
 public class Restaurant {
 	
 	private String name="";
 	private String address="";
 	private String type="";
-	private Date date = null;
+	private int year;
+	private int day;
+	private int month;
 	
 	public String getType() {
 		return type;
@@ -31,10 +31,25 @@ public class Restaurant {
 	public String toString(){
 		return(getName());
 	}
-	public Date getDate() {
-		return date;
+	public int getYear() {
+		return year;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setYear(int year) {
+		this.year = year;
+	}
+	public int getDay() {
+		return day;
+	}
+	public void setDay(int day) {
+		this.day = day;
+	}
+	public int getMonth() {
+		return month;
+	}
+	public void setMonth(int month) {
+		this.month = month;
+	}
+	public String getDateFormate(){
+		return year + "-" +  month + "-" + day;
 	}
 }
