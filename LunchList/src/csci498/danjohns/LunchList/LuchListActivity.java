@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -69,8 +70,9 @@ public class LuchListActivity extends TabActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_main, menu);
-		return true;
+		new MenuInflater(this).inflate(R.menu.option, menu);
+		
+		return(super.onCreateOptionsMenu(menu));
 	}
 
 	private View.OnClickListener onSave = new View.OnClickListener() {
@@ -120,7 +122,7 @@ public class LuchListActivity extends TabActivity {
 			getTabHost().setCurrentTab(1);
 		}
 	};
-
+	
 	class RestaurantAdapter extends ArrayAdapter<Restaurant> {
 		RestaurantAdapter() {
 			super(LuchListActivity.this, R.layout.row, model);
