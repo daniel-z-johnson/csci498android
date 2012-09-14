@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -73,6 +74,20 @@ public class LuchListActivity extends TabActivity {
 
 		list.setOnItemClickListener(onListClick);
 	}
+	
+	private void doSomeLongWork(final int incr){
+		SystemClock.sleep(250);
+	}
+	
+	private Runnable longTask = new Runnable(){
+
+		@Override
+		public void run() {
+			for(int i = 0; i < 20; ++i)
+				doSomeLongWork(500);
+		}
+		
+	};
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
