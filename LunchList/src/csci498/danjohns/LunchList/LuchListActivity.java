@@ -23,7 +23,6 @@ import android.app.TabActivity;
 import android.widget.TabHost;
 import android.view.MenuItem;
 import android.widget.Toast;
-import android.util.*;
 
 import android.widget.AdapterView;
 
@@ -131,11 +130,15 @@ public class LuchListActivity extends TabActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		try{
-			int i = 1/0;
-		}catch(Exception e){
-			Log.e("Error! ", "In onClickItem");
-			Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();
+		if (item.getItemId() == R.id.toast) {
+			String message = "No Restaurant Selected";
+
+			if (current != null)
+				message = current.getNotes();
+
+			Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+			
+			return true;
 		}
 
 		return (super.onOptionsItemSelected(item));
