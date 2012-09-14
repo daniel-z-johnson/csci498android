@@ -19,6 +19,7 @@ import android.widget.RadioGroup;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import android.app.AlertDialog;
 import android.app.TabActivity;
 import android.widget.TabHost;
 import android.view.MenuItem;
@@ -136,7 +137,12 @@ public class LuchListActivity extends TabActivity {
 			if (current != null)
 				message = current.getNotes();
 
-			Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+			//Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+			
+			AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+			alertDialog.setTitle("Notes");
+			alertDialog.setMessage(message);
+			alertDialog.show();
 			
 			return true;
 		}
