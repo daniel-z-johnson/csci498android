@@ -101,6 +101,7 @@ public class LuchListActivity extends TabActivity {
 				@Override
 				public void run() {
 					setProgressBarVisibility(false);
+					Toast.makeText(LuchListActivity.this, "Task completed", Toast.LENGTH_LONG).show();
 				}
 				
 			});
