@@ -78,6 +78,17 @@ public class LuchListActivity extends TabActivity {
 
 		return (super.onCreateOptionsMenu(menu));
 	}
+	
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu){
+		menu.clear();
+		int tab = getTabHost().getCurrentTab();
+		if(tab == 0)
+			new MenuInflater(this).inflate(R.menu.option, menu);
+		else
+			new MenuInflater(this).inflate(R.menu.options2, menu);
+		return (super.onCreateOptionsMenu(menu));
+	}
 
 	private View.OnClickListener onSave = new View.OnClickListener() {
 
@@ -130,16 +141,11 @@ public class LuchListActivity extends TabActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == R.id.toast) {
-			String message = "No Restaurant Selected";
-
-			if (current != null)
-				message = current.getNotes();
-
-			Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-			
-			return true;
-		}
+		if (item.getItemId() == R.id.toList) 
+			getTabHost().setCurrentTab(0);
+		if(item.getItemId() == R.id.toForm)
+			getTabHost().setCurrentTab(1);
+		
 
 		return (super.onOptionsItemSelected(item));
 	}
