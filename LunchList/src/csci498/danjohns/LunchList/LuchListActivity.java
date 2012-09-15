@@ -28,6 +28,8 @@ import android.widget.Toast;
 
 import android.widget.AdapterView;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 @SuppressWarnings("deprecation")
 public class LuchListActivity extends TabActivity {
 	List<Restaurant> model = new ArrayList<Restaurant>();
@@ -37,6 +39,7 @@ public class LuchListActivity extends TabActivity {
 	EditText notes = null;
 	RadioGroup types = null;
 	Restaurant current = null;
+	AtomicBoolean isActive = new AtomicBoolean(true);
 	int progress = 0;
 
 	@Override
@@ -93,7 +96,7 @@ public class LuchListActivity extends TabActivity {
 
 		@Override
 		public void run() {
-			for(int i = progress; i < 10000; i+=200)
+			for(int i = progress; i < 10000 && isActive.get(); i+=200)
 				doSomeLongWork(200);
 			
 			runOnUiThread(new Runnable() {
@@ -107,6 +110,12 @@ public class LuchListActivity extends TabActivity {
 		}
 		
 	};
+	
+	@Override
+	public void onPause() {
+		super.onPause();
+		isActive.set(false);
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
