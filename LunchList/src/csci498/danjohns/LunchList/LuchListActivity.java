@@ -78,43 +78,57 @@ public class LuchListActivity extends TabActivity {
 
 		list.setOnItemClickListener(onListClick);
 	}
-	
-	private void doSomeLongWork(final int incr){
-		runOnUiThread(new Runnable(){
+
+	private void doSomeLongWork(final int incr) {
+		runOnUiThread(new Runnable() {
 
 			@Override
 			public void run() {
-				progress+=incr;
+				progress += incr;
 				setProgress(progress);
 			}
-			
+
 		});
 		SystemClock.sleep(250);
 	}
-	
-	private Runnable longTask = new Runnable(){
+
+	private Runnable longTask = new Runnable() {
 
 		@Override
 		public void run() {
-			for(int i = progress; i < 10000 && isActive.get(); i+=200)
+			for (int i = progress; i < 10000 && isActive.get(); i += 200)
 				doSomeLongWork(200);
-			
-			runOnUiThread(new Runnable() {
 
-				@Override
-				public void run() {
-					setProgressBarVisibility(false);
-				}
-				
-			});
+			if (isActive.get()) {
+				runOnUiThread(new Runnable() {
+					public void run() {
+						setProgressBarVisibility(false);
+						progress = 0;
+					}
+				});
+			}
 		}
-		
 	};
-	
+
 	@Override
 	public void onPause() {
 		super.onPause();
 		isActive.set(false);
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+
+		isActive.set(true);
+
+		if (progress > 0)
+			startWork();
+	}
+
+	private void startWork() {
+		setProgressBarVisibility(true);
+		new Thread(longTask).start();
 	}
 
 	@Override
@@ -182,14 +196,10 @@ public class LuchListActivity extends TabActivity {
 				message = current.getNotes();
 
 			Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-			
+
 			return true;
-		}else if(item.getItemId() == R.id.run){
-			
-			setProgressBarVisibility(true);
-			progress = 0;
-			new Thread(longTask).start();
-			
+		} else if (item.getItemId() == R.id.run) {
+			startWork();
 			return true;
 		}
 
