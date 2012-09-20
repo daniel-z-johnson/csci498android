@@ -1,18 +1,10 @@
 package csci498.danjohns.LunchList;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.graphics.Color;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
@@ -26,12 +18,7 @@ import android.app.TabActivity;
 import android.content.Context;
 import android.database.Cursor;
 import android.widget.TabHost;
-import android.view.MenuItem;
-import android.widget.Toast;
-
 import android.widget.AdapterView;
-
-import java.util.concurrent.atomic.AtomicBoolean;
 
 @SuppressWarnings("deprecation")
 public class LuchListActivity extends TabActivity {
@@ -41,7 +28,6 @@ public class LuchListActivity extends TabActivity {
 	EditText address = null;
 	EditText notes = null;
 	RadioGroup types = null;
-	Restaurant current = null;
 	RestaurantHelper helper = null;
 
 	@Override
@@ -83,27 +69,12 @@ public class LuchListActivity extends TabActivity {
 
 		list.setOnItemClickListener(onListClick);
 	}
-
-
-
-//	@Override
-//	public void onPause() {
-//	}
-//
-//	@Override
-//	public void onResume() {
-//	}
 	
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
 		helper.close();
 	}
-
-
-	//@Override
-	//public boolean onCreateOptionsMenu(Menu menu) {
-	//}
 
 	private View.OnClickListener onSave = new View.OnClickListener() {
 
@@ -152,10 +123,6 @@ public class LuchListActivity extends TabActivity {
 			getTabHost().setCurrentTab(1);
 		}
 	};
-
-	//@Override
-	//public boolean onOptionsItemSelected(MenuItem item) {
-	//}
 
 	class RestaurantAdapter extends CursorAdapter {
 

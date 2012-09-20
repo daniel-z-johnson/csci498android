@@ -29,7 +29,7 @@ public class RestaurantHelper extends SQLiteOpenHelper{
 		ContentValues cv = new ContentValues();
 		
 		cv.put("name", name);
-		cv.put("adress", address);
+		cv.put("address", address);
 		cv.put("type", type);
 		cv.put("notes", notes);
 		
