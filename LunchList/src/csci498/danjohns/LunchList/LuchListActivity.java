@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -22,6 +23,8 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import android.app.TabActivity;
+import android.content.Context;
+import android.database.Cursor;
 import android.widget.TabHost;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -32,7 +35,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 @SuppressWarnings("deprecation")
 public class LuchListActivity extends TabActivity {
-	List<Restaurant> model = new ArrayList<Restaurant>();
+	Cursor model = null;
 	RestaurantAdapter adapter = null;
 	EditText name = null;
 	EditText address = null;
@@ -59,7 +62,9 @@ public class LuchListActivity extends TabActivity {
 
 		ListView list = (ListView) findViewById(R.id.restaurants);
 
-		adapter = new RestaurantAdapter();
+		model = helper.getAll();
+		startManagingCursor(model);
+		adapter = new RestaurantAdapter(model);
 		list.setAdapter(adapter);
 
 		TabHost.TabSpec spec = getTabHost().newTabSpec("tag1");
@@ -150,27 +155,27 @@ public class LuchListActivity extends TabActivity {
 	//public boolean onOptionsItemSelected(MenuItem item) {
 	//}
 
-	class RestaurantAdapter extends ArrayAdapter<Restaurant> {
-		RestaurantAdapter() {
-			super(LuchListActivity.this, R.layout.row, model);
+	class RestaurantAdapter extends CursorAdapter {
+
+		public RestaurantAdapter(Cursor c) {
+			super(LuchListActivity.this, c);
 		}
 
 		@Override
-		public View getView(int position, View convertView, ViewGroup parant) {
-			View row = convertView;
-			RestaurantHolder holder = null;
+		public void bindView(View row, Context ctext, Cursor c) {
+			RestaurantHolder holder = (RestaurantHolder)row.getTag();
+			
+			holder.populateFrom(c, helper);
+		}
 
-			if (row == null) {
-				LayoutInflater inflater = getLayoutInflater();
-
-				row = inflater.inflate(R.layout.row, parant, false);
-				holder = new RestaurantHolder(row);
-				row.setTag(holder);
-			} else
-				holder = (RestaurantHolder) row.getTag();
-
-			holder.populateFrom(model.get(position));
-
+		@Override
+		public View newView(Context ctxt, Cursor c, ViewGroup parent) {
+			LayoutInflater inflater = getLayoutInflater();
+			View row = inflater.inflate(R.layout.row, parent, false);
+			RestaurantHolder holder = new RestaurantHolder(row);
+			
+			row.setTag(holder);
+			
 			return row;
 		}
 	}
@@ -186,14 +191,14 @@ public class LuchListActivity extends TabActivity {
 			icon = (ImageView) row.findViewById(R.id.icon);
 		}
 
-		void populateFrom(Restaurant r) {
-			name.setText(r.getName());
-			address.setText(r.getAddress());
+		void populateFrom(Cursor c, RestaurantHelper helper) {
+			name.setText(helper.getName(c));
+			address.setText(helper.getAddress(c));
 
-			if (r.getType().equals("sit_down")) {
+			if (helper.getType(c).equals("sit_down")) {
 				icon.setImageResource(R.drawable.ball_red);
 				name.setTextColor(Color.RED);
-			} else if (r.getType().equals("take_out")) {
+			} else if (helper.getType(c).equals("take_out")) {
 				icon.setImageResource(R.drawable.ball_yellow);
 				name.setTextColor(Color.YELLOW);
 			} else {

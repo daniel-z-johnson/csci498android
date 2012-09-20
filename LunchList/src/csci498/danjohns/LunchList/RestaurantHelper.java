@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-
 public class RestaurantHelper extends SQLiteOpenHelper{
 	
 	private static final String DATABASE_NAME = "linchlist.db";
