@@ -104,11 +104,8 @@ public class LuchListActivity extends TabActivity {
 
 		@Override
 		public void onClick(View v) {
-			current = new Restaurant();
-			current.setName(name.getText().toString());
-			current.setAddress(address.getText().toString());
-			current.setNotes(notes.getText().toString());
-
+			String type = null;
+			
 			switch (types.getCheckedRadioButtonId()) {
 			case R.id.sit_down:
 				current.setType("sit_down");
@@ -123,7 +120,7 @@ public class LuchListActivity extends TabActivity {
 				break;
 			}
 
-			adapter.add(current);
+			helper.insert(name.getText().toString(), address.getText().toString(), type, notes.getText().toString());
 		}
 	};
 
