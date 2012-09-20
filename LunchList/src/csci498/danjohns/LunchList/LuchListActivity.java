@@ -86,13 +86,13 @@ public class LuchListActivity extends TabActivity {
 
 
 
-	@Override
-	public void onPause() {
-	}
-
-	@Override
-	public void onResume() {
-	}
+//	@Override
+//	public void onPause() {
+//	}
+//
+//	@Override
+//	public void onResume() {
+//	}
 	
 	@Override
 	public void onDestroy() {
@@ -113,19 +113,20 @@ public class LuchListActivity extends TabActivity {
 			
 			switch (types.getCheckedRadioButtonId()) {
 			case R.id.sit_down:
-				current.setType("sit_down");
+				type = "sit_down";
 				break;
 
 			case R.id.take_out:
-				current.setType("take_out");
+				type = "take_out";
 				break;
 
 			case R.id.delivery:
-				current.setType("delivery");
+				type = "delivery";
 				break;
 			}
 
 			helper.insert(name.getText().toString(), address.getText().toString(), type, notes.getText().toString());
+			model.requery();
 		}
 	};
 
