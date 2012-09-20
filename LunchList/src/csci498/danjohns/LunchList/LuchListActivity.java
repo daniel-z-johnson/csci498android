@@ -134,19 +134,20 @@ public class LuchListActivity extends TabActivity {
 		@Override
 		public void onItemClick(AdapterView<?> parant, View view, int position,
 				long id) {
-			current = model.get(position);
-
-			name.setText(current.getName());
-			address.setText(current.getAddress());
-			notes.setText(current.getNotes());
-
-			if (current.getType().equals("sit_down"))
+			model.moveToPosition(position);
+			name.setText(helper.getName(model));
+			address.setText(helper.getAddress(model));
+			notes.setText(helper.getNotes(model));
+			
+			String type = helper.getType(model);
+			
+			if (type.equals("sit_down"))
 				types.check(R.id.sit_down);
-			else if (current.getType().equals("take_out"))
+			else if (type.equals("take_out"))
 				types.check(R.id.take_out);
 			else
 				types.check(R.id.delivery);
-
+			
 			getTabHost().setCurrentTab(1);
 		}
 	};
