@@ -30,6 +30,7 @@ public class LunchListActivity extends TabActivity {
 	EditText notes = null;
 	RadioGroup types = null;
 	RestaurantHelper helper = null;
+	public final static String ID_EXTRA = "csci498.danjohns._ID";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,7 @@ public class LunchListActivity extends TabActivity {
 		@Override
 		public void onItemClick(AdapterView<?> parant, View view, int position, long id) {
 			Intent i = new Intent(LunchListActivity.this, DetailForm.class);
-			
+			i.putExtra(ID_EXTRA, String.valueOf(id));
 			startActivity(i);
 		}
 	};

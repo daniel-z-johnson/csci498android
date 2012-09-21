@@ -13,6 +13,7 @@ public class DetailForm extends Activity {
 	EditText notes = null;
 	RadioGroup types = null;
 	RestaurantHelper helper = null;
+	String restaurantID = null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -29,6 +30,8 @@ public class DetailForm extends Activity {
 		Button save = (Button) findViewById(R.id.save);
 
 		save.setOnClickListener(onSave);
+		
+		restaurantID = getIntent().getStringExtra(LunchListActivity.ID_EXTRA);
 	}
 	
 	private View.OnClickListener onSave = new View.OnClickListener() {
