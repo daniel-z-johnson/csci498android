@@ -3,26 +3,24 @@ package csci498.danjohns.LunchList;
 import android.os.Bundle;
 import android.graphics.Color;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RadioGroup;
-import android.widget.TabHost;
 import android.widget.TextView;
 
-import android.app.TabActivity;
+import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.widget.TabHost;
 import android.widget.AdapterView;
 
-@SuppressWarnings("deprecation")
-public class LunchListActivity extends TabActivity {
+public class LunchListActivity extends ListActivity {
 	Cursor model = null;
 	RestaurantAdapter adapter = null;
 	EditText name = null;
@@ -84,6 +82,24 @@ public class LunchListActivity extends TabActivity {
 			
 			return row;
 		}
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		new MenuInflater(this).inflate(R.menu.option, menu);
+		
+		return super.onCreateOptionsMenu(menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getItemId() == R.id.add) {
+			startActivity(new Intent(LunchListActivity.this, DetailForm.class));
+			
+			return true;
+		}
+		
+		return super.onOptionsItemSelected(item);
 	}
 
 	static class RestaurantHolder {
