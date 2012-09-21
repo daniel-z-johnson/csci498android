@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <TableLayout
+        android:id="@+id/details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="4dip"
+        android:shrinkColumns="1"
+        android:stretchColumns="1" >
+
+        <TableRow>
+
+            <TextView android:text="@string/name_string" />
+
+            <EditText android:id="@+id/name" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView android:text="@string/address_string" />
+
+            <EditText android:id="@+id/addr" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView android:id="@string/type_string" />
+
+            <RadioGroup android:id="@+id/types" >
+
+                <RadioButton
+                    android:id="@+id/take_out"
+                    android:checked="true"
+                    android:text="@string/take_out_string" />
+
+                <RadioButton
+                    android:id="@+id/sit_down"
+                    android:text="@string/sit_down_string" />
+
+                <RadioButton
+                    android:id="@+id/delivery"
+                    android:text="@string/delivery_string" />
+            </RadioGroup>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView android:text="@string/string_notes" />
+
+            <EditText
+                android:id="@+id/notes"
+                android:gravity="top"
+                android:lines="2"
+                android:maxLines="2"
+                android:maxWidth="200sp"
+                android:scrollHorizontally="false"
+                android:singleLine="false" />
+        </TableRow>
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/save_string" />
+    </TableLayout>
+
+</ScrollView>
