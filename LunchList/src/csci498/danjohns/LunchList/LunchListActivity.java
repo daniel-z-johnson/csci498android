@@ -16,12 +16,13 @@ import android.widget.TextView;
 
 import android.app.TabActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.widget.TabHost;
 import android.widget.AdapterView;
 
 @SuppressWarnings("deprecation")
-public class LuchListActivity extends TabActivity {
+public class LunchListActivity extends TabActivity {
 	Cursor model = null;
 	RestaurantAdapter adapter = null;
 	EditText name = null;
@@ -104,30 +105,17 @@ public class LuchListActivity extends TabActivity {
 	private AdapterView.OnItemClickListener onListClick = new AdapterView.OnItemClickListener() {
 
 		@Override
-		public void onItemClick(AdapterView<?> parant, View view, int position,
-				long id) {
-			model.moveToPosition(position);
-			name.setText(helper.getName(model));
-			address.setText(helper.getAddress(model));
-			notes.setText(helper.getNotes(model));
+		public void onItemClick(AdapterView<?> parant, View view, int position, long id) {
+			Intent i = new Intent(LunchListActivity.this, DetailForm.class);
 			
-			String type = helper.getType(model);
-			
-			if (type.equals("sit_down"))
-				types.check(R.id.sit_down);
-			else if (type.equals("take_out"))
-				types.check(R.id.take_out);
-			else
-				types.check(R.id.delivery);
-			
-			getTabHost().setCurrentTab(1);
+			startActivity(i);
 		}
 	};
 
 	class RestaurantAdapter extends CursorAdapter {
 
 		public RestaurantAdapter(Cursor c) {
-			super(LuchListActivity.this, c);
+			super(LunchListActivity.this, c);
 		}
 
 		@Override
