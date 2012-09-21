@@ -1,6 +1,7 @@
 package csci498.danjohns.LunchList;
 
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +33,16 @@ public class DetailForm extends Activity {
 		save.setOnClickListener(onSave);
 		
 		restaurantID = getIntent().getStringExtra(LunchListActivity.ID_EXTRA);
+		
+		if (restaurantID != null)
+			load();
+	}
+	
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		
+		helper.close();
 	}
 	
 	private View.OnClickListener onSave = new View.OnClickListener() {
@@ -55,4 +66,24 @@ public class DetailForm extends Activity {
 			}
 		}
 	};
+	
+	private void load() {
+		Cursor c = helper.getById(restaurantID);
+		
+		c.moveToFirst();
+		name.setText(helper.getName(c));
+		address.setText(helper.getAddress(c));
+		notes.setText(helper.getNotes(c));
+		
+		String type = helper.getType(c);
+		
+		if(c.equals("sit_down"))
+			types.check(R.id.sit_down);
+		else if (c.equals("take_out"))
+			types.check(R.id.take_out);
+		else
+			types.check(R.id.delivery);
+		
+		c.close();
+	}
 }
