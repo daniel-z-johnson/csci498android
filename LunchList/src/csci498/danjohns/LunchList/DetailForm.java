@@ -64,6 +64,13 @@ public class DetailForm extends Activity {
 					type = "delivery";
 					break;
 			}
+			
+			if (restaurantID == null) 
+				helper.insert(name.getText().toString(), address.getText().toString(), type, notes.getText().toString());
+			else
+				helper.update(restaurantID, name.getText().toString(), address.getText().toString(), type, notes.getText().toString());
+			
+			finish();
 		}
 	};
 	
@@ -77,9 +84,9 @@ public class DetailForm extends Activity {
 		
 		String type = helper.getType(c);
 		
-		if(c.equals("sit_down"))
+		if(type.equals("sit_down"))
 			types.check(R.id.sit_down);
-		else if (c.equals("take_out"))
+		else if (type.equals("take_out"))
 			types.check(R.id.take_out);
 		else
 			types.check(R.id.delivery);

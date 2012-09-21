@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -47,17 +48,14 @@ public class LunchListActivity extends ListActivity {
 		super.onDestroy();
 		helper.close();
 	}
-
-
-	private AdapterView.OnItemClickListener onListClick = new AdapterView.OnItemClickListener() {
-
-		@Override
-		public void onItemClick(AdapterView<?> parant, View view, int position, long id) {
-			Intent i = new Intent(LunchListActivity.this, DetailForm.class);
-			i.putExtra(ID_EXTRA, String.valueOf(id));
-			startActivity(i);
-		}
-	};
+	
+	@Override
+	public void onListItemClick(ListView list, View view, int postion, long id) {
+		Intent i = new Intent(LunchListActivity.this, DetailForm.class);
+		
+		i.putExtra(ID_EXTRA, String.valueOf(id));
+		startActivity(i);
+	}
 
 	class RestaurantAdapter extends CursorAdapter {
 
