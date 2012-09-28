@@ -5,6 +5,6 @@
         android:title="Sort Order"
         android:summary="Choose the order the list uses"
         android:entries="@array/sort_names"
-        andriod:entryValues="@array/sort_clauses"
+        android:entryValues="@array/sort_clauses"
         android:dialogTitle="Choose a sort order"/>
 </PreferenceScreen>
