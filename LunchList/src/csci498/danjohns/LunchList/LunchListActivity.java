@@ -21,7 +21,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.widget.AdapterView;
 
 public class LunchListActivity extends ListActivity {
 	Cursor model = null;
@@ -38,9 +37,8 @@ public class LunchListActivity extends ListActivity {
 		
 		@Override
 		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-			if (key.equals("sort_order")){
-				//empty because the tutorial didn't tell me to put anything here, bla
-			}
+			if (key.equals("sort_order"))
+					initList();
 		}
 		
 	};
@@ -50,15 +48,24 @@ public class LunchListActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		
 		
 		helper = new RestaurantHelper(this);
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		initList();
+		prefs.registerOnSharedPreferenceChangeListener(prefListener);
+	}
+	
+	private void initList(){
+		if (model != null){
+			stopManagingCursor(model);
+			model.close();
+		}
+		
 		model = helper.getAll(prefs.getString("sort_order", "name"));
 		startManagingCursor(model);
 		adapter = new RestaurantAdapter(model);
 		setListAdapter(adapter);
-		
-		prefs.registerOnSharedPreferenceChangeListener(prefListener);
 	}
 	
 	@Override
