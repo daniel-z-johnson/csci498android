@@ -33,6 +33,17 @@ public class LunchListActivity extends ListActivity {
 	RestaurantHelper helper = null;
 	public final static String ID_EXTRA = "csci498.danjohns._ID";
 	SharedPreferences prefs = null;
+	
+	private SharedPreferences.OnSharedPreferenceChangeListener prefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+		
+		@Override
+		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+			if (key.equals("sort_order")){
+				//empty because the tutorial didn't tell me to put anything here, bla
+			}
+		}
+		
+	};
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +57,8 @@ public class LunchListActivity extends ListActivity {
 		startManagingCursor(model);
 		adapter = new RestaurantAdapter(model);
 		setListAdapter(adapter);
+		
+		prefs.registerOnSharedPreferenceChangeListener(prefListener);
 	}
 	
 	@Override
