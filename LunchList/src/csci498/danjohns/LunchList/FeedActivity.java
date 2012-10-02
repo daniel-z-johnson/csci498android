@@ -9,13 +9,16 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.app.ListActivity;
 
 public class FeedActivity extends Activity {
 	
 	private static class FeedTask extends AsyncTask<String, Void, Void> {
 		private Exception e = null;
 		private FeedActivity activity = null;
+		
+		FeedTask(FeedActivity activity){
+			attach(activity);
+		}
 		
 		@Override
 		protected Void doInBackground(String... urls) {
@@ -24,6 +27,7 @@ public class FeedActivity extends Activity {
 				HttpGet getMethod = new HttpGet(urls[0]);
 				ResponseHandler<String> responseHandler = new BasicResponseHandler();
 				String responseBody = client.execute(getMethod, responseHandler);
+				
 				Log.d("FeedActivity", responseBody);
 			}catch (Exception e) {
 				this.e = e;
@@ -44,6 +48,12 @@ public class FeedActivity extends Activity {
 		
 		private void goBlooey(Throwable t) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			
+			builder
+				.setTitle("Exception!")
+				.setMessage(t.toString())
+				.setPositiveButton("ok", null)
+				.show();
 		}
 		
 	}
