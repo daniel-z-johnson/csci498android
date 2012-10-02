@@ -13,5 +13,6 @@
     <string name="delivery_string">Delivery</string>
     <string name="string_notes">Notes:</string>
     <string name="url_string">Feed URL</string>
+    <string name="rss_string">RSS Feed</string>
 
 </resources>
