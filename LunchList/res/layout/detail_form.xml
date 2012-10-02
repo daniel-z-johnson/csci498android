@@ -48,8 +48,6 @@
 
         <TableRow>
 
-            <TextView android:text="@string/string_notes" />
-
             <EditText
                 android:id="@+id/notes"
                 android:gravity="top"
@@ -57,7 +55,13 @@
                 android:maxLines="2"
                 android:maxWidth="200sp"
                 android:scrollHorizontally="false"
-                android:singleLine="false" />
+                android:singleLine="false"
+                android:hint="@string/string_notes" />
+            
+            <EditText
+                android:id="@+id/feed"
+                android:hint="@string/url_string" />
+            
         </TableRow>
 
         <Button

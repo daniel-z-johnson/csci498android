@@ -1,5 +1,4 @@
-<ScrollView 
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
 
@@ -10,19 +9,25 @@
         android:stretchColumns="3" >
 
         <TableRow>
+
             <TextView android:text="@string/name_string" />
+
             <EditText android:id="@+id/name" />
         </TableRow>
 
         <TableRow>
+
             <TextView android:text="@string/address_string" />
+
             <EditText android:id="@+id/addr" />
         </TableRow>
 
         <TableRow>
+
             <TextView android:text="@string/type_string" />
+
             <RadioGroup android:id="@+id/types" >
-                
+
                 <RadioButton
                     android:id="@+id/take_out"
                     android:text="@string/take_out_string" />
@@ -34,28 +39,34 @@
                 <RadioButton
                     android:id="@+id/delivery"
                     android:text="@string/delivery_string" />
-                
             </RadioGroup>
-
-            <TextView android:text="Notes: " />
 
             <LinearLayout android:orientation="vertical" >
 
                 <EditText
                     android:id="@+id/notes"
-                    android:inputType="textMultiLine"
-                    android:gravity="top"
-                    android:lines="2"
-                    android:scrollHorizontally="false"
-                    android:maxLines="2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-                <Button 
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:hint="@string/string_notes"
+                    android:inputType="textMultiLine"
+                    android:lines="2"
+                    android:maxLines="2"
+                    android:scrollHorizontally="false" />
+
+                <EditText
+                    android:id="@+id/feed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/url_string" />
+
+                <Button
                     android:id="@+id/save"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/save_string"/>
+                    android:text="@string/save_string" />
             </LinearLayout>
         </TableRow>
     </TableLayout>
+
 </ScrollView>
