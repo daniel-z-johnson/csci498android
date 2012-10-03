@@ -46,7 +46,6 @@
             </RadioGroup>
         </TableRow>
 
-        <TableRow>
 
             <EditText
                 android:id="@+id/notes"
@@ -62,7 +61,6 @@
                 android:id="@+id/feed"
                 android:hint="@string/url_string" />
             
-        </TableRow>
 
         <Button
             android:id="@+id/save"
