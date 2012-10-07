@@ -10,7 +10,7 @@ public class FeedService extends IntentService {
 	}
 
 	@Override
-	protected void onHandleIntent(Intent arg0) {
+	protected void onHandleIntent(Intent i) {
 		// Do Something
 	}
 
