@@ -3,6 +3,7 @@ package csci498.danjohns.LunchList;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ public class DetailForm extends Activity {
 	RestaurantHelper helper = null;
 	String restaurantID = null;
 	TextView location = null;
+	LocationManager locMgr = null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -39,6 +41,7 @@ public class DetailForm extends Activity {
 		types = (RadioGroup) findViewById(R.id.types);
 		feed = (EditText) findViewById(R.id.feed);
 		location = (TextView)findViewById(R.id.location);
+		locMgr = (LocationManager)getSystemService(LOCATION_SERVICE);
 
 		//Button save = (Button) findViewById(R.id.save);
 
@@ -164,6 +167,8 @@ public class DetailForm extends Activity {
 			}
 			
 			return true;
+		} else if (item.getItemId() == R.id.location) {
+			locMgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, onLocationChange);
 		}
 		
 		return super.onOptionsItemSelected(item);
