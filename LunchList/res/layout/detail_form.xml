@@ -45,6 +45,12 @@
                     android:text="@string/delivery_string" />
             </RadioGroup>
         </TableRow>
+        
+        <TableRow>
+            <TextView android:text="@string/location_string"/>
+            <TextView android:id="@+id/location"
+                android:text="@string/notset_string"/>
+        </TableRow>
 
 
             <EditText
@@ -61,12 +67,6 @@
                 android:id="@+id/feed"
                 android:hint="@string/url_string" />
             
-
-        <Button
-            android:id="@+id/save"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/save_string" />
     </TableLayout>
 
 </ScrollView>
