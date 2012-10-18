@@ -37,7 +37,7 @@ public class DetailForm extends Activity {
 		types = (RadioGroup) findViewById(R.id.types);
 		feed = (EditText) findViewById(R.id.feed);
 
-		Button save = (Button) findViewById(R.id.save);
+		//Button save = (Button) findViewById(R.id.save);
 
 		//save.setOnClickListener(onSave);
 		
