@@ -39,7 +39,7 @@ public class DetailForm extends Activity {
 
 		Button save = (Button) findViewById(R.id.save);
 
-		save.setOnClickListener(onSave);
+		//save.setOnClickListener(onSave);
 		
 		restaurantID = getIntent().getStringExtra(LunchListActivity.ID_EXTRA);
 		
@@ -54,42 +54,47 @@ public class DetailForm extends Activity {
 		helper.close();
 	}
 	
-	private View.OnClickListener onSave = new View.OnClickListener() {
+	private void save() {
 		
-		@Override
-		public void onClick(View v) {
+		if (name.getText().toString().length() > 0) {
 			String type = null;
 			
 			switch (types.getCheckedRadioButtonId()) {
-				case R.id.sit_down:
-					type = "sit_down";
-					break;
-					
-				case R.id.take_out:
-					type = "take_out";
-					break;
-					
-				case R.id.delivery:
-					type = "delivery";
-					break;
+			case R.id.sit_down:
+				type = "sit_down";
+				break;
+			
+			case R.id.take_out:
+				type = "take_out";
+				break;
+			
+			default:
+				type = "delivery";
+				break;
 			}
 			
-			if (restaurantID == null) 
-				helper.insert(name.getText().toString(), 
-							  address.getText().toString(), 
-							  type, 
-							  notes.getText().toString(), 
-							  feed.getText().toString());
+			if (restaurantID == null)
+				helper.insert(name.getText().toString(),
+						      address.getText().toString(), 
+						      type, 
+						      notes.getText().toString(), 
+						      feed.getText().toString());
 			else
-				helper.update(restaurantID, name.getText().toString(), 
-											address.getText().toString(), 
-											type, 
-											notes.getText().toString(), 
-											feed.getText().toString());
-			
-			finish();
+				helper.update(restaurantID, 
+							   name.getText().toString(), 
+							   address.getText().toString(), 
+							   type, 
+							   notes.getText().toString(), 
+							   feed.getText().toString());
 		}
-	};
+	}
+	
+	@Override
+	public void onPause() {
+		save();
+		
+		super.onPause();
+	}
 	
 	private void load() {
 		Cursor c = helper.getById(restaurantID);
