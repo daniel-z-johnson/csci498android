@@ -3,6 +3,8 @@ package csci498.danjohns.LunchList;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -98,6 +100,7 @@ public class DetailForm extends Activity {
 	@Override
 	public void onPause() {
 		save();
+		locMgr.removeUpdates(onLocationChange);
 		
 		super.onPause();
 	}
@@ -168,7 +171,9 @@ public class DetailForm extends Activity {
 			
 			return true;
 		} else if (item.getItemId() == R.id.location) {
-			locMgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, onLocationChange);
+			locMgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, onLocationChange);
+			
+			return true;
 		}
 		
 		return super.onOptionsItemSelected(item);
@@ -179,4 +184,30 @@ public class DetailForm extends Activity {
 		NetworkInfo info = cm.getActiveNetworkInfo();
 		return info != null;
 	}
+	
+	LocationListener onLocationChange = new LocationListener() {
+
+		@Override
+		public void onLocationChanged(Location fix) {
+			helper.updateLocation(restaurantID, fix.getLatitude(), fix.getLongitude());
+			location.setText(String.valueOf(fix.getLatitude()) + " " + String.valueOf(fix.getLongitude()));
+			Toast.makeText(DetailForm.this, "Location saved", Toast.LENGTH_LONG).show();
+		}
+
+		@Override
+		public void onProviderDisabled(String provider) {
+			// TODO Auto-generated method stub
+		}
+
+		@Override
+		public void onProviderEnabled(String provider) {
+			// TODO Auto-generated method stub
+		}
+
+		@Override
+		public void onStatusChanged(String provider, int status, Bundle extras) {
+			// TODO Auto-generated method stub
+		}
+		
+	};
 }
