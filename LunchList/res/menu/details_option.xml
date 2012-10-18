@@ -4,4 +4,8 @@
         android:id="@+id/feed"
         android:title="@string/rss_string"
         android:icon="@drawable/ic_menu_friendslist"/>
+    <item
+        android:id="@+id/location"
+        android:title="@string/saveLocation_string"
+        android:icon="@drawable/ic_menu_compass" />
 </menu>

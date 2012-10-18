@@ -16,6 +16,7 @@
     <string name="rss_string">RSS Feed</string>
     <string name="location_string">Locationn:</string>
     <string name="notset_string">(not set)</string>
+    <string name="saveLocation_string">Save Location</string>
     
 
 </resources>

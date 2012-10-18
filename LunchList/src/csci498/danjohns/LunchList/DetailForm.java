@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class DetailForm extends Activity {
@@ -23,6 +24,7 @@ public class DetailForm extends Activity {
 	RadioGroup types = null;
 	RestaurantHelper helper = null;
 	String restaurantID = null;
+	TextView location = null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -36,6 +38,7 @@ public class DetailForm extends Activity {
 		notes = (EditText) findViewById(R.id.notes);
 		types = (RadioGroup) findViewById(R.id.types);
 		feed = (EditText) findViewById(R.id.feed);
+		location = (TextView)findViewById(R.id.location);
 
 		//Button save = (Button) findViewById(R.id.save);
 
@@ -113,6 +116,10 @@ public class DetailForm extends Activity {
 			types.check(R.id.take_out);
 		else
 			types.check(R.id.delivery);
+		
+		location.setText(String.valueOf(helper.getLatitude(c))
+						+ ","
+						+ String.valueOf(helper.getLongitude(c)));
 		
 		c.close();
 	}
