@@ -1,10 +1,13 @@
 package csci498.danjohns.LunchList;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import com.google.android.maps.GeoPoint;
+import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
+import com.google.android.maps.OverlayItem;
 
 public class RestaurantMap extends MapActivity {
 	public static final String EXTRA_LATITUDE = "csci498.danjohns.LuchList.EXTRA_LATITUDE";
@@ -29,11 +32,42 @@ public class RestaurantMap extends MapActivity {
 		
 		map.getController().setCenter(status);
 		map.setBuiltInZoomControls(true);
+		
+		Drawable marker = getResources().getDrawable(R.drawable.marker);
+		
+		marker.setBounds(0,0, marker.getIntrinsicWidth(), marker.getIntrinsicHeight());
+		
+		map.getOverlays().add(new RestaurantOverlay(marker, status, getIntent().getStringExtra(EXTRA_NAME)));
 	}
 	
 	@Override
 	protected boolean isRouteDisplayed() {
 		return false;
+	}
+	
+	private class RestaurantOverlay extends ItemizedOverlay<OverlayItem> {
+		private OverlayItem item = null;
+		
+		public RestaurantOverlay(Drawable marker, GeoPoint point, String name) {
+			super(marker);
+			
+			boundCenterBottom(marker);
+			
+			item = new OverlayItem(point, name, name);
+			
+			populate();
+		}
+
+		@Override
+		protected OverlayItem createItem(int i) {
+			return item;
+		}
+
+		@Override
+		public int size() {
+			return 1;
+		}
+		
 	}
 
 }
