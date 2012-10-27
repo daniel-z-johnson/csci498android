@@ -32,16 +32,6 @@ public class LunchListActivity extends ListActivity {
 	RestaurantHelper helper = null;
 	public final static String ID_EXTRA = "csci498.danjohns._ID";
 	SharedPreferences prefs = null;
-	
-	private SharedPreferences.OnSharedPreferenceChangeListener prefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
-		
-		@Override
-		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-			if (key.equals("sort_order"))
-					initList();
-		}
-		
-	};
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -81,7 +71,39 @@ public class LunchListActivity extends ListActivity {
 		i.putExtra(ID_EXTRA, String.valueOf(id));
 		startActivity(i);
 	}
-
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		new MenuInflater(this).inflate(R.menu.option, menu);
+		
+		return super.onCreateOptionsMenu(menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getItemId() == R.id.add) {
+			startActivity(new Intent(LunchListActivity.this, DetailForm.class));
+			
+			return true;
+		}else if (item.getItemId() == R.id.prefs) {
+			startActivity(new Intent(this, EditPreferences.class));
+			
+			return true;
+		}
+		
+		return super.onOptionsItemSelected(item);
+	}
+	
+	private SharedPreferences.OnSharedPreferenceChangeListener prefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+		
+		@Override
+		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+			if (key.equals("sort_order"))
+					initList();
+		}
+		
+	};
+	
 	class RestaurantAdapter extends CursorAdapter {
 
 		public RestaurantAdapter(Cursor c) {
@@ -105,28 +127,6 @@ public class LunchListActivity extends ListActivity {
 			
 			return row;
 		}
-	}
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		new MenuInflater(this).inflate(R.menu.option, menu);
-		
-		return super.onCreateOptionsMenu(menu);
-	}
-	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == R.id.add) {
-			startActivity(new Intent(LunchListActivity.this, DetailForm.class));
-			
-			return true;
-		}else if (item.getItemId() == R.id.prefs) {
-			startActivity(new Intent(this, EditPreferences.class));
-			
-			return true;
-		}
-		
-		return super.onOptionsItemSelected(item);
 	}
 
 	static class RestaurantHolder {
