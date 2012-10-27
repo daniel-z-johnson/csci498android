@@ -22,5 +22,6 @@
     <string name="alarm_summary">Check if you want to know when iti si time for lunch</string>
     <string name="alarm_time_tile_string">Lunch Alarm Time</string>
     <string name="i_live_in_a_universal_machine">Set you desired time for the lunch alarm</string>
+    <string name="alarm_text">It\'s it for lunch</string>
 
 </resources>
