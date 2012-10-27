@@ -21,7 +21,7 @@ public class OnBootReceiver extends BroadcastReceiver {
 		AlarmManager mgr = (AlarmManager)ctxt.getSystemService(Context.ALARM_SERVICE);
 		Calendar cal = Calendar.getInstance();
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctxt);
-		String time = prefs.getString("alarm_time", "12.00");
+		String time = prefs.getString("alarm_time", "12:00");
 		
 		cal.set(Calendar.HOUR_OF_DAY, TimePreferance.getHour(time));
 		cal.set(Calendar.MINUTE, TimePreferance.getMinute(time));
