@@ -7,4 +7,14 @@
         android:entries="@array/sort_names"
         android:entryValues="@array/sort_clauses"
         android:dialogTitle="Choose a sort order"/>
+    <CheckBoxPreference 
+        android:key="alarm"
+        android:title="@string/alarm_title_string"
+        android:summary="@string/alarm_summary"/>
+    <csci498.danjohns.LunchList.TimePreferance
+        android:key="alarm_time"
+        android:title="@string/alarm_time_tile_string"
+        android:defaultValue="12:00"
+        android:summary="@string/i_live_in_a_universal_machine"
+        android:dependency="alarm"/>
 </PreferenceScreen>

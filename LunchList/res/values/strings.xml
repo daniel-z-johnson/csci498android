@@ -18,5 +18,9 @@
     <string name="notset_string">(not set)</string>
     <string name="saveLocation_string">Save Location</string>
     <string name="map_item_string">Show on Map</string>
+    <string name="alarm_title_string">Sound a Luch Alarm</string>
+    <string name="alarm_summary">Check if you want to know when iti si time for lunch</string>
+    <string name="alarm_time_tile_string">Lunch Alarm Time</string>
+    <string name="i_live_in_a_universal_machine">Set you desired time for the lunch alarm</string>
 
 </resources>
