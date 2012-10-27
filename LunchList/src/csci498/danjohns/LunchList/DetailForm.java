@@ -44,10 +44,6 @@ public class DetailForm extends Activity {
 		feed = (EditText) findViewById(R.id.feed);
 		location = (TextView)findViewById(R.id.location);
 		locMgr = (LocationManager)getSystemService(LOCATION_SERVICE);
-
-		//Button save = (Button) findViewById(R.id.save);
-
-		//save.setOnClickListener(onSave);
 		
 		restaurantID = getIntent().getStringExtra(LunchListActivity.ID_EXTRA);
 		
@@ -60,6 +56,14 @@ public class DetailForm extends Activity {
 		super.onDestroy();
 		
 		helper.close();
+	}
+	
+	@Override
+	public void onPause() {
+		save();
+		locMgr.removeUpdates(onLocationChange);
+		
+		super.onPause();
 	}
 	
 	private void save() {
@@ -95,14 +99,6 @@ public class DetailForm extends Activity {
 							   notes.getText().toString(), 
 							   feed.getText().toString());
 		}
-	}
-	
-	@Override
-	public void onPause() {
-		save();
-		locMgr.removeUpdates(onLocationChange);
-		
-		super.onPause();
 	}
 	
 	private void load() {
