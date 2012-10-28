@@ -26,7 +26,7 @@ public class Restaurant {
 		this.address = address;
 	}
 	
-	public String toString(){
+	public String toString() {
 		return(getName());
 	}
 	public String getNotes() {
