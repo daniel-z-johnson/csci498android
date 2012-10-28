@@ -65,7 +65,7 @@ public class RestaurantHelper extends SQLiteOpenHelper{
 											  "FROM restaurants WHERE _ID = ?", args);
 	}
 	
-	public Cursor getAll(String orderBy){
+	public Cursor getAll(String orderBy) {
 		return(getReadableDatabase().rawQuery("SELECT _ID, name, address, type, notes," +
 											  "lat, lon " +
 											  "FROM restaurants ORDER BY " 
@@ -82,19 +82,19 @@ public class RestaurantHelper extends SQLiteOpenHelper{
 		getWritableDatabase().update("restraurants", cv, "_ID=?", args);
 	}
 	
-	public String getName(Cursor c){
+	public String getName(Cursor c) {
 		return c.getString(1);
 	}
 	
-	public String getAddress(Cursor c){
+	public String getAddress(Cursor c) {
 		return c.getString(2);
 	}
 	
-	public String getType(Cursor c){
+	public String getType(Cursor c) {
 		return c.getString(3);
 	}
 	
-	public String getNotes(Cursor c){
+	public String getNotes(Cursor c) {
 		return c.getString(4);
 	}
 	
