@@ -17,4 +17,9 @@
         android:defaultValue="12:00"
         android:summary="@string/i_live_in_a_universal_machine"
         android:dependency="alarm"/>
+    <CheckBoxPreference 
+        android:key="use_notification"
+        android:title="@string/notification_title_string"
+        android:defaultValue="true"
+        android:summary="@string/notification_summary"/>
 </PreferenceScreen>
