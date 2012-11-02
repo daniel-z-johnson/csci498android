@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="300dip"
+    android:minHeight="79dip"
+    android:updatePeriodMillis="1800000"
+    android:initialLayout="@layout/widget"/>
+	<!--1800000 is 30 min in ms, wish coulld do 1_800_000 like in ruby -->
