@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
         android:icon="@drawable/resaurant"
@@ -30,13 +31,23 @@
         <service android:name="FeedService"></service>
         <uses-library android:name="com.google.android.maps" android:required="true"/>
         <activity android:name="RestaurantMap"></activity>
-        <receiver android:name="OnBootReceiver" android:enabled="true"></receiver>
+        <receiver android:name="OnBootReceiver" android:enabled="true">
+            <intent-filter >
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
         <activity android:name="AlarmActivity"></activity>
         <receiver android:name="OnAlarmReceiver"></receiver>
-        <receiver android:name=".AppWidget">
+        <receiver 
+            android:name="LunchListWidget"
+            android:label="@string/app_name"
+            android:icon="@drawable/icon">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
+            <meta-data 
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider"/>
         </receiver>
     </application>
 
