@@ -49,6 +49,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_provider"/>
         </receiver>
+        <service android:name="WidgetService"></service>
     </application>
 
 </manifest>
