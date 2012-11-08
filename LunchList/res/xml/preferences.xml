@@ -22,4 +22,4 @@
         android:title="@string/notification_title_string"
         android:defaultValue="true"
         android:summary="@string/notification_summary"/>
-</PreferenceScreen>
+</PreferenceScreen> 

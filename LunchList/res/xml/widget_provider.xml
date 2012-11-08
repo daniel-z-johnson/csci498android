@@ -5,3 +5,4 @@
     android:minHeight="79dip"
     android:updatePeriodMillis="1800000"
     android:initialLayout="@layout/widget"/>
+ 
