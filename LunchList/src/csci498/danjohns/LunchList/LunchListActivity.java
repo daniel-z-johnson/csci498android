@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 public class LunchListActivity extends FragmentActivity implements LunchFragment.OnRestaurantListener {
-	public final static String ID_EXTRA = "csci498.danjohns._ID";
+	public final static String ID_EXTRA = "csci498.danjohns.LunchList._ID";
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
