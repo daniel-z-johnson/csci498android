@@ -3,6 +3,8 @@ package csci498.danjohns.LunchList;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 
 public class LunchListActivity extends FragmentActivity implements LunchFragment.OnRestaurantListener {
 	public final static String ID_EXTRA = "csci498.danjohns._ID";
@@ -25,7 +27,21 @@ public class LunchListActivity extends FragmentActivity implements LunchFragment
 			i.putExtra(ID_EXTRA, String.valueOf(id));
 			startActivity(i);
 		} else {
-			//TODO something else
+			FragmentManager fragMgr = getSupportFragmentManager();
+			DetailFragment details = (DetailFragment)fragMgr.findFragmentById(R.id.details);
+			
+			if (details == null) {
+				details = DetailFragment.newInstance(id);
+				
+				FragmentTransaction xaction = fragMgr.beginTransaction();
+				
+				xaction
+					.add(R.id.details, details)
+					.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+					.commit();
+			} else {
+				details.loadRestaurant(String.valueOf(id));
+			}
 		}
 	}
 }
