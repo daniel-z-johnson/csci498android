@@ -180,6 +180,16 @@ public class DetailFragment extends Fragment {
 		c.close();
 	}
 	
+	public static DetailFragment newInstance(long id) {
+		DetailFragment result = new DetailFragment();
+		Bundle args = new Bundle();
+		
+		args.putString(ARG_REST_ID, String.valueOf(id));
+		result.setArguments(args);
+		
+		return result;
+	}
+	
 	private void save() {
 		if (name.getText().toString().length() > 0) {
 			String type = null;
