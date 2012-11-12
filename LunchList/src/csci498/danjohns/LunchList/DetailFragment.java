@@ -75,24 +75,18 @@ public class DetailFragment extends Fragment {
 		}
 	}
 	
-	@Override
-	public void onResume() {
-		super.onResume();
-		
+private RestaurantHelper getHelper() {
+	if (helper == null) {
 		helper = new RestaurantHelper(getActivity());
-		
-		helper = new RestaurantHelper(getActivity());
-		restaurantId = getActivity().getIntent().getStringExtra(LunchListActivity.ID_EXTRA);
-		
-		if (restaurantId != null) {
-			load();
-		}
 	}
+	
+	return helper;
+}
 	
 	@Override
 	public void onPause() {
 		save();
-		helper.close();
+		getHelper().close();
 		locMgr.removeUpdates(onLocationChange);
 		
 		super.onPause();
@@ -155,24 +149,24 @@ public class DetailFragment extends Fragment {
 	}
 	
 	private void load() {
-		Cursor c = helper.getById(restaurantId);
+		Cursor c = getHelper().getById(restaurantId);
 		
 		c.moveToFirst();
-		name.setText(helper.getName(c));
-		address.setText(helper.getAddress(c));
-		notes.setText(helper.getNotes(c));
-		feed.setText(helper.getFeed(c));
+		name.setText(getHelper().getName(c));
+		address.setText(getHelper().getAddress(c));
+		notes.setText(getHelper().getNotes(c));
+		feed.setText(getHelper().getFeed(c));
 		
-		if(helper.getType(c).equals("sit_down")) {
+		if(getHelper().getType(c).equals("sit_down")) {
 			types.check(R.id.sit_down);
-		} else if (helper.getType(c).equals("take_out")) {
+		} else if (getHelper().getType(c).equals("take_out")) {
 			types.check(R.id.take_out);
 		}else {
 			types.check(R.id.delivery);
 		}
 		
-		latitude = helper.getLatitude(c);
-		longitude = helper.getLongitude(c);
+		latitude = getHelper().getLatitude(c);
+		longitude = getHelper().getLongitude(c);
 		
 		location.setText(String.valueOf(latitude)
 							+ ", "
@@ -209,13 +203,13 @@ public class DetailFragment extends Fragment {
 			}
 			
 			if (restaurantId == null) {
-				helper.insert(name.getText().toString(), 
+				getHelper().insert(name.getText().toString(), 
 								address.getText().toString(), 
 								type, 
 								notes.getText().toString(), 
 								feed.getText().toString());
 			} else {
-				helper.update(restaurantId, 
+				getHelper().update(restaurantId, 
 						name.getText().toString(), 
 						address.getText().toString(), 
 						type, 
@@ -229,7 +223,7 @@ public class DetailFragment extends Fragment {
 		
 		@Override
 		public void onLocationChanged(Location fix) {
-			helper.updateLocation(restaurantId, fix.getLatitude(), fix.getLongitude());
+			getHelper().updateLocation(restaurantId, fix.getLatitude(), fix.getLongitude());
 			location.setText(String.valueOf(fix.getLatitude())
 									+ ", "
 									+ String.valueOf(fix.getLongitude()));
