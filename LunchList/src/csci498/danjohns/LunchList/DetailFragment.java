@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class DetailFragment extends Fragment {
+	private static final String ARG_REST_ID="csci498.danjohns.ARG_REST_ID";
 	EditText name = null;
 	EditText address = null;
 	EditText notes = null;
@@ -58,6 +59,20 @@ public class DetailFragment extends Fragment {
 		types = (RadioGroup)getView().findViewById(R.id.types);
 		feed = (EditText)getView().findViewById(R.id.feed);
 		location = (TextView)getView().findViewById(R.id.location);
+		
+		Bundle args = getArguments();
+		
+		if (args != null) {
+			loadRestaurant(args.getString(ARG_REST_ID));
+		}
+	}
+	
+	public void loadRestaurant(String reStaurantId) {
+		this.restaurantId = reStaurantId;
+		
+		if (reStaurantId != null) {
+			load();
+		}
 	}
 	
 	@Override
