@@ -37,6 +37,7 @@
             </intent-filter>
         </receiver>
         <activity android:name="AlarmActivity"></activity>
+        <activity android:name="HelpPage"></activity>
         <receiver android:name="OnAlarmReceiver"></receiver>
         <receiver 
             android:name="LunchListWidget"
