@@ -117,7 +117,7 @@ private RestaurantHelper getHelper() {
 				Toast
 					.makeText(getActivity(), "Sorry, the Interent is not avaiable", 
 							Toast.LENGTH_LONG).show();
-			}
+			} 
 			
 			return true;
 		} else if (item.getItemId() == R.id.location) {
@@ -134,6 +134,8 @@ private RestaurantHelper getHelper() {
 			startActivity(i);
 			
 			return true;
+		} else if (item.getItemId() == R.id.help) {
+			startActivity(new Intent(getActivity(), HelpPage.class));
 		}
 		
 		return super.onOptionsItemSelected(item);
