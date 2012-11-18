@@ -242,6 +242,10 @@ private RestaurantHelper getHelper() {
 						.show();
 		}
 		
+		private boolean isTelephonyAvailable() {
+			return getActivity().getPackageManager().hasSystemFeature("android.hardware.telephony");
+		}
+		
 		@Override
 		public void onProviderDisabled(String provider) {
 			
