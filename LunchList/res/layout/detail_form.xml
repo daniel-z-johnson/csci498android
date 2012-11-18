@@ -51,6 +51,10 @@
             <TextView android:id="@+id/location"
                 android:text="@string/notset_string"/>
         </TableRow>
+        <TableRow>
+            <TextView android:text="Phone:"/>
+            <EditText android:id="@+id/phone" android:inputType="phone"/>
+        </TableRow>
 
 
             <EditText
