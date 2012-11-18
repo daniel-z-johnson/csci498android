@@ -8,6 +8,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -105,6 +106,10 @@ private RestaurantHelper getHelper() {
 			menu.findItem(R.id.location).setEnabled(false);
 			menu.findItem(R.id.map).setEnabled(false);
 		}
+		
+		if(isTelephonyAvailable()) {
+			menu.findItem(R.id.call).setEnabled(true);
+		}
 	}
 	
 	@Override
@@ -138,6 +143,12 @@ private RestaurantHelper getHelper() {
 			return true;
 		} else if (item.getItemId() == R.id.help) {
 			startActivity(new Intent(getActivity(), HelpPage.class));
+		} else if (item.getItemId() == R.id.call) {
+			String toDial = "tel:" + phone.getText().toString();
+			
+			if (toDial.length() > 4) {
+				startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(toDial)));
+			}
 		}
 		
 		return super.onOptionsItemSelected(item);
@@ -186,6 +197,10 @@ private RestaurantHelper getHelper() {
 		result.setArguments(args);
 		
 		return result;
+	}
+	
+	private boolean isTelephonyAvailable() {
+		return getActivity().getPackageManager().hasSystemFeature("android.hardware.telephony");
 	}
 	
 	private void save() {
@@ -242,9 +257,7 @@ private RestaurantHelper getHelper() {
 						.show();
 		}
 		
-		private boolean isTelephonyAvailable() {
-			return getActivity().getPackageManager().hasSystemFeature("android.hardware.telephony");
-		}
+
 		
 		@Override
 		public void onProviderDisabled(String provider) {

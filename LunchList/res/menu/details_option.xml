@@ -12,6 +12,10 @@
         android:id="@+id/map"
         android:title="@string/map_item_string"
         android:icon="@drawable/ic_menu_mapmode"/>
+    <item 
+        android:id="@+id/call"
+        android:title="Call"
+        android:enabled="false"/>
      <item 
         android:id="@+id/help"
         android:title="@string/help_string"
