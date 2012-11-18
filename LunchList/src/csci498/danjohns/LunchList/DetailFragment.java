@@ -171,6 +171,7 @@ private RestaurantHelper getHelper() {
 		address.setText(getHelper().getAddress(c));
 		notes.setText(getHelper().getNotes(c));
 		feed.setText(getHelper().getFeed(c));
+		phone.setText(getHelper().getPhone(c));
 		
 		if(getHelper().getType(c).equals("sit_down")) {
 			types.check(R.id.sit_down);
