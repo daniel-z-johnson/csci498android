@@ -149,7 +149,7 @@ private RestaurantHelper getHelper() {
 			if (toDial.length() > 4) {
 				startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(toDial)));
 			}
-		}
+		} 
 		
 		return super.onOptionsItemSelected(item);
 	}
